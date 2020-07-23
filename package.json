@@ -1,6 +1,6 @@
 {
   "name": "@mtfe/thriftrw",
-  "version": "3.12.2-thrifthub",
+  "version": "3.12.3-thrifthub",
   "description": "thrift encoding/decoding using bufrw",
   "keywords": [],
   "author": "Lei Zhao <leizha@uber.com>",
@@ -52,6 +52,9 @@
   "bin": {
     "thrift2json": "./thrift2json.js"
   },
+  "files": [
+    "browser/dist/*.js"
+  ],
   "scripts": {
     "add-licence": "uber-licence --file '!(*bundle).js' --file '!(*test-bundle).js'",
     "build-browser": "cd browser && node browserify.js | derequire > dist/bundle.js",
