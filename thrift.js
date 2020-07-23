@@ -102,6 +102,8 @@ function Thrift(options) {
     this.consts = Object.create(null);
     // [enumName][name] :String
     this.enums = Object.create(null);
+    // [enumValue][name] :Number
+    this.enumsToValue = Object.create(null);
     // [structName] :Constructor
     this.structs = Object.create(null);
     // [exceptionName] :Constructor
