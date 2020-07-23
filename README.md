@@ -8,6 +8,10 @@
 
 <!-- [![NPM][npm-png]][npm] -->
 
+## 与原版的不同之处
+
+在编译好的model上新增了enumsToValue，相对于原先的enums，新增的enumsToValue将Name-Name的映射，修改为Name-Value的映射
+
 Encodes and decodes Thrift binary protocol and JavaScript object models
 declared in a Thrift IDL.
 This is an alternative approach to using code generated from Thrift IDL source

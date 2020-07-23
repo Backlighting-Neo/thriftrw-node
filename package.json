@@ -1,10 +1,10 @@
 {
-  "name": "thriftrw",
+  "name": "@mtfe/thriftrw",
   "version": "3.12.0",
   "description": "thrift encoding/decoding using bufrw",
   "keywords": [],
   "author": "Lei Zhao <leizha@uber.com>",
-  "repository": "git://github.com/thriftrw/thriftrw-node.git",
+  "repository": "ssh://git@git.sankuai.com/~tangzongchao/thriftrw.git",
   "main": "index.js",
   "homepage": "https://github.com/thriftrw/thriftrw-node",
   "bugs": {
