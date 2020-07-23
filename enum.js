@@ -91,6 +91,7 @@ ThriftEnum.prototype.link = function link(model) {
     this.linked = true;
 
     model.enums[this.name] = this.namesToNames;
+    model.enumsToValue[this.name] = this.namesToValues;
 
     // Alias if first character is not lower-case
     // istanbul ignore else
