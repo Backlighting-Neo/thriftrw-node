@@ -521,6 +521,30 @@ test('enforces ordinal identifiers', function t(assert) {
     assert.end();
 });
 
+test('allow field.id to be null', function t(assert) {
+    var thrift = new ThriftStruct();
+    try {
+        thrift.compile({
+            id: {name: 'Health'},
+            fields: [
+                {
+                    id: null,
+                    name: 'ok',
+                    valueType: {
+                        type: 'BaseType',
+                        baseType: 'boolean'
+                    },
+                    optional: true,
+                    required: false
+                }
+            ]
+        }, {});
+    } catch (err) {
+        assert.fail('shouldnt throw');
+    }
+    assert.end();
+});
+
 test('allows undefined as default', function t(assert) {
     var defaultStruct = new ThriftStruct({strict: false, defaultValueDefinition: undefinedDefault});
     var tMock = {

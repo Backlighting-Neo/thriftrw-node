@@ -109,6 +109,16 @@ ThriftStruct.prototype.fromBufferResult = function fromBufferResult(buffer) {
 };
 
 ThriftStruct.prototype.compile = function compile(def, thrift) {
+    // 兼容函数参数没有ID的问题
+    def.fields.forEach(function (field, i) {
+        if (!field.id) {
+            field.id = {
+                type: 'FieldIdentifier',
+                value: i + 1,
+            };
+        }
+    });
+
     // Struct names must be valid JavaScript. If the Thrift name is not valid
     // in JavaScript, it can be overridden with the js.name annotation.
     this.name = def.annotations && def.annotations['js.name'] || def.id.name;
