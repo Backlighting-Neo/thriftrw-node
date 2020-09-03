@@ -10,7 +10,17 @@
 
 ## 与原版的不同之处
 
-在编译好的model上新增了enumsToValue，相对于原先的enums，新增的enumsToValue将Name-Name的映射，修改为Name-Value的映射
+- 在编译好的model上新增了enumsToValue，相对于原先的enums，新增的enumsToValue将Name-Name的映射，修改为Name-Value的映射
+- 修复了形如以下情形，无法正确解析的问题 (引入的文件名中带有点的问题)
+```
+include "testing.file.thrift"
+
+struct IncludeFileWithDot {
+  1: required testing.file.Node node
+}
+```
+
+## Origin
 
 Encodes and decodes Thrift binary protocol and JavaScript object models
 declared in a Thrift IDL.
