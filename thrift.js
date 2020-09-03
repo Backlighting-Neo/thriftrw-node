@@ -551,15 +551,20 @@ Thrift.prototype.resolveIdentifier = function resolveIdentifier(def, name, model
     var parts = name.split('.');
     var err;
 
-    var module = this.modules[parts.shift()];
+    var module = this.modules[parts[0]];
     if (module) {
-        return module.resolveIdentifier(def, parts.join('.'), models);
-    } else {
-        err = new Error('cannot resolve reference to ' + def.name + ' at ' + def.line + ':' + def.column);
-        err.line = def.line;
-        err.column = def.column;
-        throw err;
+        return module.resolveIdentifier(def, parts.slice(1).join('.'), models);
     }
+
+    module = this.modules[parts.slice(0, -1).join('.')];
+    if (module) {
+        return module.resolveIdentifier(def, parts.slice(-1)[0], models);
+    }
+
+    err = new Error('cannot resolve reference to ' + def.name + ' at ' + def.line + ':' + def.column);
+    err.line = def.line;
+    err.column = def.column;
+    throw err;
 };
 
 module.exports.Thrift = Thrift;
