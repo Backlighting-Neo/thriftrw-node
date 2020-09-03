@@ -164,6 +164,19 @@ test('parse include filename with dot correctly', function t(assert) {
     assert.end();
 });
 
+test('potential module name not found', function t(assert) {
+    try {
+        new Thrift({
+            entryPoint: path.resolve(__dirname, 'potenital-module-name.thrift'),
+            allowFilesystemAccess: true
+        });
+        assert.fail('thrift should not parse');
+    } catch (err) {
+        assert.equal(err.message, 'cannot resolve reference to NodeEnum2.UNKNOW at 4:38');
+    }
+    assert.end();
+});
+
 test('reference error in thrift', function t(assert) {
     var source = fs.readFileSync(path.join(__dirname, 'reference-error.thrift'), 'utf-8');
     try {

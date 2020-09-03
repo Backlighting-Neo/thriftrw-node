@@ -561,6 +561,13 @@ Thrift.prototype.resolveIdentifier = function resolveIdentifier(def, name, model
         return module.resolveIdentifier(def, parts.slice(-1)[0], models);
     }
 
+    for (var moduleName in this.modules) {
+        var module = this.modules[moduleName];
+        if(module.models[name]) {
+            return module.resolveIdentifier(def, name, models);
+        }
+    }
+
     err = new Error('cannot resolve reference to ' + def.name + ' at ' + def.line + ':' + def.column);
     err.line = def.line;
     err.column = def.column;
